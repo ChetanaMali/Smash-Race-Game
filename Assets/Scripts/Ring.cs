@@ -14,10 +14,10 @@ public class Ring : MonoBehaviour
     [SerializeField] bool m_IsOnGround = false;
     [SerializeField] float m_MotionTime;
     [SerializeField] float m_JumpTime;
-    // Start is called before the first frame update
+    
     void Start()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -62,6 +62,7 @@ public class Ring : MonoBehaviour
         if (m_IsOnGround && m_JumpTimer < 0f)
         {
             rb.AddForce(Vector3.up * m_JumpSpeed, ForceMode.Impulse);
+            //SoundManager.Instance.JumpSfx();
             m_IsOnGround = false;
             m_JumpTimer = m_JumpTime;
             m_MotionTimer = m_MotionTime;
@@ -70,6 +71,7 @@ public class Ring : MonoBehaviour
         if (Input.GetButton("Fire1") && !m_IsOnGround)
         {
             rb.AddForce(-transform.up * m_DownSpeed);
+            
         }
 
             // Spring force control
